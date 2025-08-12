@@ -18,8 +18,8 @@ char	*id = "$Id$\n";
 
 typedef struct _state {
 	int fd;
-	int size;
-	int npages;
+	size_t size;
+	long npages;
 	int clone;
 	char* file;
 	char* where;
