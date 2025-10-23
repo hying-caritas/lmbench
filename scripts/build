@@ -245,9 +245,14 @@ ${CC} ${CFLAGS} -o ${BASE}$$ ${BASE}$$.c 1>${NULL} 2>${NULL} \
 	&& CFLAGS="${CFLAGS} -DHAVE_SCHED_SETAFFINITY=1";
 rm -f ${BASE}$$ ${BASE}$$.o ${BASE}$$.c
 
+# check for -ltirpc(RHEL/centos)
+echo "extern int get_myaddress(); main() { get_myaddress(); }" > ${BASE}$$.c
+if ! ${CC} ${CFLAGS} -o ${BASE}$$ ${BASE}$$.c 1>${NULL} 2>${NULL}; then
+	${CC} ${CFLAGS} -o ${BASE}$$ ${BASE}$$.c -ltirpc 1>${NULL} 2>${NULL} \
+		&& LDLIBS="${LDLIBS} -ltirpc" && CFLAGS="${CFLAGS} -I/usr/include/tirpc";
+fi
+rm -f ${BASE}$$ ${BASE}$$.o ${BASE}$$.c
 
 if [ ! -d ${BINDIR} ]; then mkdir -p ${BINDIR}; fi
-#LDLIBS="${LDLIBS} -ltirpc"
-#CFLAGS="${CFLAGS} -I/usr/include/tirpc"
 # now go ahead and build everything!
 ${MAKE} OS="${OS}" CC="${CC}" CFLAGS="${CFLAGS}" LDLIBS="${LDLIBS}" O="${BINDIR}" $*
