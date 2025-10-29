@@ -169,7 +169,6 @@ benchmp(benchmp_f initialize,
 	int		start_signal[2];
 	int		result_signal[2];
 	int		exit_signal[2];
-	int		need_warmup;
 	fd_set		fds;
 	struct timeval	timeout;
 
