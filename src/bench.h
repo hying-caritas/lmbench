@@ -4,6 +4,10 @@
 #ifndef _BENCH_H
 #define _BENCH_H
 
+#if !defined(WIN32) && defined(HAVE_SCHED_SETAFFINITY)
+#define _GNU_SOURCE
+#endif
+
 #ifdef WIN32
 #include <windows.h>
 typedef unsigned char bool_t;
@@ -35,6 +39,9 @@ typedef unsigned char bool_t;
 #include        <sys/socket.h>
 #include        <sys/un.h>
 #include        <sys/resource.h>
+#ifdef HAVE_SCHED_SETAFFINITY
+#include	<sched.h>
+#endif
 #define PORTMAP
 #include	<rpc/rpc.h>
 #endif
