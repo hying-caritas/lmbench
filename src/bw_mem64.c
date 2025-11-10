@@ -285,7 +285,7 @@ rd(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -331,7 +331,7 @@ rdwr(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -409,7 +409,7 @@ void
 frd(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
-	register int sum = 0;
+	register TYPE sum = 0;
 	register TYPE *lastone = state->lastone;
 
 	while (iterations-- > 0) {
@@ -525,7 +525,7 @@ rd8(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -580,7 +580,7 @@ rdwr8(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -639,7 +639,7 @@ rd32(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -681,7 +681,7 @@ rdwr32(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -726,7 +726,7 @@ rd64(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -766,7 +766,7 @@ rdwr64(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -929,7 +929,7 @@ void
 frd_sse(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
-	register int sum = 0;
+	register TYPE sum = 0;
 	register TYPE *lastone = state->lastone;
 
 	while (iterations-- > 0) {

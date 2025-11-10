@@ -318,7 +318,7 @@ rd128(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -356,7 +356,7 @@ rdwr128(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -397,7 +397,7 @@ rd512(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -435,7 +435,7 @@ rdwr512(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -476,7 +476,7 @@ rd1024(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -514,7 +514,7 @@ rdwr1024(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -555,7 +555,7 @@ rd2048(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
@@ -593,7 +593,7 @@ rdwr2048(iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
 	register TYPE *lastone = state->lastone;
-	register int sum = 0;
+	register TYPE sum = 0;
 
 	while (iterations-- > 0) {
 	    register TYPE *p = state->buf;
