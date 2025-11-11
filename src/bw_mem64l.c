@@ -31,6 +31,8 @@ void	init_overhead(iter_t iterations, void *cookie);
 void	init_loop(iter_t iterations, void *cookie);
 void	cleanup(iter_t iterations, void *cookie);
 
+void	rd64(iter_t iterations, void *cookie);
+void	wr64(iter_t iterations, void *cookie);
 void	rd128(iter_t iterations, void *cookie);
 void	wr128(iter_t iterations, void *cookie);
 void	rdwr128(iter_t iterations, void *cookie);
@@ -118,6 +120,12 @@ main(int ac, char **av)
 			warmup, repetitions, &state);
 	} else if (streq(av[optind+1], "bcopy")) {
 		benchmp(init_loop, loop_bcopy, cleanup, 0, parallel,
+			warmup, repetitions, &state);
+	} else if (streq(av[optind+1], "rd64")) {
+		benchmp(init_loop, rd64, cleanup, 0, parallel,
+			warmup, repetitions, &state);
+	} else if (streq(av[optind+1], "wr64")) {
+		benchmp(init_loop, wr64, cleanup, 0, parallel,
 			warmup, repetitions, &state);
 	} else if (streq(av[optind+1], "rd128")) {
 		benchmp(init_loop, rd128, cleanup, 0, parallel,
@@ -312,6 +320,48 @@ void adjusted_bandwidth(uint64 time, uint64 bytes, uint64 iter, double overhd)
 	DOIT_64(START, STEP) DOIT_63(START + 64*STEP, STEP)
 #define DOIT_128(START, STEP)						\
 	DOIT_64(START, STEP) DOIT_64(START + 64*STEP, STEP)
+#define DOIT_255(START, STEP)						\
+	DOIT_128(START, STEP) DOIT_127(START + 128*STEP, STEP)
+#define DOIT_256(START, STEP)						\
+	DOIT_128(START, STEP) DOIT_128(START + 128*STEP, STEP)
+
+void
+rd64(iter_t iterations, void *cookie)
+{
+	state_t *state = (state_t *) cookie;
+	register TYPE *lastone = state->lastone;
+	register TYPE sum = 0;
+
+	while (iterations-- > 0) {
+	    register TYPE *p = state->buf;
+	    while (p <= lastone) {
+		sum +=
+#define	DOIT(i)	p[i]+
+		DOIT_255(0, 8)
+		p[2048 - 8];
+		p +=  2048;
+	    }
+	}
+	use_int(sum);
+}
+#undef	DOIT
+
+void
+wr64(iter_t iterations, void *cookie)
+{
+	state_t *state = (state_t *) cookie;
+	register TYPE *lastone = state->lastone;
+
+	while (iterations-- > 0) {
+	    register TYPE *p = state->buf;
+	    while (p <= lastone) {
+#define	DOIT(i)	p[i] = 1;
+		DOIT_256(0, 8);
+		p +=  2048;
+	    }
+	}
+}
+#undef	DOIT
 
 void
 rd128(iter_t iterations, void *cookie)
