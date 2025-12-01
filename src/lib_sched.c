@@ -212,7 +212,7 @@ sched_pin(int cpu)
 		for (i = 0; i < sz * 8 * sizeof(unsigned long); ++i) {
 			int	word = i / (8 * sizeof(unsigned long));
 			int	bit = i % (8 * sizeof(unsigned long));
-			if (cpumask[word] & (1 << bit)) ncpus++;
+			if (cpumask[word] & (1UL << bit)) ncpus++;
 		}
 	}
 	cpu %= ncpus;
@@ -221,9 +221,9 @@ sched_pin(int cpu)
 	for (i = 0, j = 0; i < sz * 8 * sizeof(unsigned long); ++i) {
 		int	word = i / (8 * sizeof(unsigned long));
 		int	bit = i % (8 * sizeof(unsigned long));
-		if (cpumask[word] & (1 << bit)) {
+		if (cpumask[word] & (1UL << bit)) {
 			if (j >= cpu) {
-				mask[word] |= (1 << bit);
+				mask[word] |= (1UL << bit);
 				break;
 			}
 			j++;
